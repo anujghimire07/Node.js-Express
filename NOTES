@@ -1,0 +1,11 @@
+1. npm init : whenever you are starting a new project. it helps create file that helps to run the project (package.json)
+
+2. node <filename>: runs the files
+
+3. npm init -y: creates a node.js project by skipping questions an creates a package.json file with default values
+
+4. npm install url : url package
+
+5. npm install : install node modules
+
+6. npm install @types/node

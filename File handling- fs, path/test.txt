@@ -1,0 +1,13 @@
+this is writefileSync demonstration
+
+ 1778071617630 : this info was added using append
+ 1778071623323 : this info was added using append
+ 1778071786107 : this info was added using append
+ 1778071849736 : this info was added using append
+ 1778071908429 : this info was added using append
+ 1778071915850 : this info was added using append
+ 1778071932137 : this info was added using append
+ 1778072075709 : this info was added using append
+ 1778072174417 : this info was added using append
+ 1778072237974 : this info was added using append
+ 1778072390279 : this info was added using append
