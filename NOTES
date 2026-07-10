@@ -14,4 +14,24 @@
 
 8. npm uninstall url : uninstall url package
 
-9.
+9. npm i --global nodemon, nodemon index.js
+
+10. npm i express@4.17.2: used to specify which version of express you wanna install (4.17.2 doesnot mean anything here, its just an example, watch "versioning in nodejs" by piyush garg incase of confusion)
+
+11. npm update: updates packages on the basis of specified version range
+
+res.json()
+
+Date()
+new Date()
+Date.now()
+new Date.toISOString()
+
+findIndex()
+index === -1
+
+users.find()
+users.push()
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))

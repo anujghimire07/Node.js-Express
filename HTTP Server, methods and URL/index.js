@@ -1,78 +1,78 @@
-// const http = require("http")
+const http = require("http")
 const fs = require("fs")
-// const url = require("url")
+const url = require("url")
 
 const express = require("express")
 
-const app = express()
+// const app = express()
 
 // without express when we use routing, the code becomes messy and unmaintainable, we have to import url module to use query and other things.
 // but using express, everything is built-in, it makes the code clean, short and easily maintainable. and the query is also built-in so we don't have to import url module to use it
-app.get("/", (req, res) => {
-    return res.send("hello from home page (express)")
-})
+// app.get("/", (req, res) => {
+//     return res.send("hello from home page (express)")
+// })
 
-app.get("/about", (req, res) => {
-    if (!req.query.name) {
+// app.get("/about", (req, res) => {
+//     if (!req.query.name) {
 
-        fs.appendFile("./index.txt", `new request on server\n\n`, (error, result) => { })
+//         fs.appendFile("./index.txt", `new request on server\n\n`, (error, result) => { })
         
-        return res.send("hello from about page (express)")
-    }
-    else {
+//         return res.send("hello from about page (express)")
+//     }
+//     else {
 
-        fs.appendFile("./index.txt", `new request on server by ${req.query.name}\n\n`, (error, result) => { })
+//         fs.appendFile("./index.txt", `new request on server by ${req.query.name}\n\n`, (error, result) => { })
          
-        return res.send(`welcome to about page ${req.query.name}`)
+//         return res.send(`welcome to about page ${req.query.name}`)
+//     }
+// })
+
+function MyHandler(req, res) {
+    const MyURL = url.parse(req.url, true)
+
+    if (req.url === "/favicon.ico") {
+        return res.end()
     }
-})
 
-// function MyHandler(req, res) {
-//     const MyURL = url.parse(req.url, true)
+    let data = `${Date.now()}, ${req.url}, ${req.method} : new request received\n\n`
 
-//     if (req.url === "/favicon.ico") {
-//         return res.end()
-//     }
+    //url.parse shows the url info by breaking down parts of the url into objects and true parses the query string into an object
 
-//     let data = `${Date.now()}, ${req.url}, ${req.method} : new request received\n\n`
+    console.log(MyURL) //shows the values parsed by url.parse
 
-//     //url.parse shows the url info by breaking down parts of the url into objects and true parses the query string into an object
+    fs.appendFile("index.txt", data, (err, result) => {
+        if (err) {
+            console.log("SOME ERROR OCCURRED")
+        }
+        else {
+            console.log("Append Successful (without express)")
+        }
+    })
 
-//     console.log(MyURL) //shows the values parsed by url.parse
+    switch (/*req.url */ MyURL.pathname) { //can only be used when url package is installed and url module imported 
 
-//     fs.appendFile("index.txt", data, (err, result) => {
-//         if (err) {
-//             console.log("SOME ERROR OCCURRED")
-//         }
-//         else {
-//             console.log("Append Successful (without express)")
-//         }
-//     })
+        case "/": res.end("this is the home page (without express)")
+            break
 
-//     switch (/*req.url */ MyURL.pathname) { //can only be used when url package is installed and url module imported 
+        case "/products": res.end("this is products page (without express)")
+            break
 
-//         case "/": res.end("this is the home page (without express)")
-//             break
+        case "/about":
+            const username = MyURL.query.name
+            const userid = MyURL.query.id
+            if (!username || !userid) {
+                res.end("this is about page (without express)")
+            }
+            else {
+                res.end(`this is about page and ${username} : ${userid} has requested (without express)`)
+            }
+            break
 
-//         case "/products": res.end("this is products page (without express)")
-//             break
-
-//         case "/about":
-//             const username = MyURL.query.name
-//             const userid = MyURL.query.id
-//             if (!username || !userid) {
-//                 res.end("this is about page (without express)")
-//             }
-//             else {
-//                 res.end(`this is about page and ${username} : ${userid} has requested (without express)`)
-//             }
-//             break
-
-//         default: res.end("404 not found (without express)")
-//     }
-//     // console.log(req.headers)
-//     // console.log(req)
-// }
+        default: res.end("404 not found (without express)")
+    }
+    // console.log(req.headers)
+    // console.log(req)
+}
 
 
 // const myserver = http.createServer(app)

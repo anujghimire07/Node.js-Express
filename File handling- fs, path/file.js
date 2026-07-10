@@ -1,16 +1,26 @@
 const files = require("fs")
 
-// //sync call
+// //sync file write
 // files.writeFileSync("./test.txt", "this is writefileSync demonstration")
 
-// //Async
+
+
+// //Async file write
 // files.writeFile("./test.txt","this is writeFile demonstration", (err)=>{} )
+
+
 
 files.appendFileSync("./test.txt", `\n ${Date.now()} : this info was added using append`)
 
+
+
+//Sync file read
 // const result = files.readFileSync("./info.txt", "utf-8")
 // console.log(result)
 
+
+
+//Async file read
 files.readFile("./info.txt", "utf-8", (err, result) => {
     if (err) {
         console.log("ERROR OCCURRED: ANUZ", err)
@@ -19,6 +29,9 @@ files.readFile("./info.txt", "utf-8", (err, result) => {
         console.log(result)
     }
 })
+
+
+
 files.copyFileSync("./test.txt", "./info.txt")//copy contents of one file to another, can also be used to copy the contents of a file into a new file eg:  files.copyFileSync("./test.txt", "./copy.txt")
 
 //  files.unlinkSync("./copy.txt") : Deletes a file

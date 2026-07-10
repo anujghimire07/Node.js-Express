@@ -19,7 +19,6 @@ console.log("1")
 // console.log(a)
 
 //  fs.appendFileSync("note.txt", "\n text appended by appendfilesync")
-
 // fs.appendFile("note.txt", "\n text appended by fileSync", (err, result) => {
 //     if(err){
 //         console.log("ERRORRRRR")
